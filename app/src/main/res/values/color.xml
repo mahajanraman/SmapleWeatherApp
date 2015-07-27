@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="background_color">#d97b37</color>
+    <color name="search_button_color">#d26c22</color>
+    <color name="action_background_color">#00000000</color>
+    <color name="search_button_focussed_and_pressed">#c1631f</color>
+    <color name="temp_box_back_color">#999999</color>
+    <color name="search_box_focussed">#38b6e6</color>
+
+</resources>

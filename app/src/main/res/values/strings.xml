@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">OpenWeatherMap</string>
+
+    <string name="weather_info">Weather Information</string>
+    <string name="action_settings">Settings</string>
+    <string name="enter_city">Enter City Name</string>
+    <string name="city_name_error">City name can not left empty</string>
+    <string name="city_name_length">"City name is too short"</string>
+    <string name="no_connection">"Please check your Internet connection</string>
+    <string name="degree">"\u0020\u00b0c"</string>
+    <string name="comma">"\u0020,\u0020</string>
+    <string name="min_temp">Min Temp\u0020\u003a\u0020</string>
+    <string name="max_temp">Max Temp\u0020\u003a\u0020</string>
+    <string name="wind_speed">Wind speed\u0020\u003a\u0020</string>
+    <string name="clouds">Clouds\u0020\u003a\u0020</string>
+    <string name="pressure">Pressure\u0020\u003a\u0020</string>
+    <string name="wind_unit">m/s</string>
+    <string name="pressure_unit">hpa</string>
+    <string name="single_next_line">\n</string>
+    <string name="double_next_line">\n\n</string>
+    <string name="geo_cords_start">Geo coords[\u0020</string>
+    <string name="end_geo_cords">\u0020]</string>
+    <string name="search_button_text">Search</string>
+</resources>

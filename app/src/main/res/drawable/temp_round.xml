@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" android:padding="@dimen/search_box_padding">
+    <solid android:color="@color/temp_box_back_color"/>
+    <corners
+        android:bottomRightRadius="@dimen/city_edit_margin_left_right"
+        android:topRightRadius="@dimen/city_edit_margin_left_right"
+        android:bottomLeftRadius="@dimen/city_edit_margin_left_right"
+        android:topLeftRadius="@dimen/city_edit_margin_left_right"/>
+</shape>
