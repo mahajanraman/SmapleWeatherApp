@@ -34,6 +34,10 @@ public class ParseFactory {
     private static final String CLOUDS = "clouds";
     private static final String ALL = "all";
     private static final String SPEED = "speed";
+	private static final Sttring ERROR_MESSAGE = "message";
+	private static final String DESCRIPTION  = "description";
+	private static final String ICON = "icon";
+	
 
     /**
      * parse weather data
@@ -44,15 +48,19 @@ public class ParseFactory {
         Weather mWeather = new Weather();
         try{
             JSONObject jObj = new JSONObject(data);
-            mWeather.setCityName(jObj.getString(CITY_NAME));
-            JSONObject mObj = new JSONObject(jObj.getString(COORDINATES));
-            mWeather.setLatitude(mObj.getDouble(LATITUDE));
-            mWeather.setLongitude(mObj.getDouble(LONGITUDE));
-            mWeather.setWeatherDescription(addWeatherDescription(jObj.getJSONArray(WEATHER)));
-            mWeather.setWindSpeed(windInfo(jObj.getString(WIND)));
-            mWeather.setCloudsRange(cloudInfo(jObj.getString(CLOUDS)));
-            mWeather.setMainWeatherDescription(addWeatherMainDescription(jObj.getString(MAIN)));
-            mWeather.setWeatherSystemDescription(addWeatherSystemDescription(jObj.getString(SYS)));
+            if(!jObj.isNull(ERROR_MESSAGE)){
+                mWeather.setErrorMessage(jObj.getString(ERROR_MESSAGE));
+            }else {
+                mWeather.setCityName(jObj.getString(CITY_NAME));
+                JSONObject mObj = new JSONObject(jObj.getString(COORDINATES));
+                mWeather.setLatitude(mObj.getDouble(LATITUDE));
+                mWeather.setLongitude(mObj.getDouble(LONGITUDE));
+                mWeather.setWeatherDescription(addWeatherDescription(jObj.getJSONArray(WEATHER)));
+                mWeather.setWindSpeed(windInfo(jObj.getString(WIND)));
+                mWeather.setCloudsRange(cloudInfo(jObj.getString(CLOUDS)));
+                mWeather.setMainWeatherDescription(addWeatherMainDescription(jObj.getString(MAIN)));
+                mWeather.setWeatherSystemDescription(addWeatherSystemDescription(jObj.getString(SYS)));
+            }
             return mWeather;
         }catch (Exception e){
             throw ParseException.makeException(e);
@@ -70,9 +78,9 @@ public class ParseFactory {
             for (int i = 0; i < mJsonArray.length(); i++) {
 
                 JSONObject eachVal = mJsonArray.getJSONObject(i);
-                mWholeDescription.setMainDescription(eachVal.getString("main"));
-                mWholeDescription.setFullDescription(eachVal.getString("description"));
-                mWholeDescription.setIconId(eachVal.getString("icon"));
+                mWholeDescription.setMainDescription(eachVal.getString(MAIN));
+                mWholeDescription.setFullDescription(eachVal.getString(DESCRIPTION));
+                mWholeDescription.setIconId(eachVal.getString(ICON));
             }
             return mWholeDescription;
         }catch (Exception e){

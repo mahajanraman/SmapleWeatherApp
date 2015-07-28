@@ -45,7 +45,6 @@ public class WeatherMainActivity extends BaseActivity implements TextView.OnEdit
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_main);
-//        getActionBar().setTitle(getResources().getString(R.string.app_name));
         showResponse = (TextView) findViewById(R.id.response_data);
         weatherIcon = (ImageView) findViewById(R.id.weather_icon);
         flagIcon = (ImageView) findViewById(R.id.flag_icon);
@@ -100,12 +99,16 @@ public class WeatherMainActivity extends BaseActivity implements TextView.OnEdit
                 Log.d(TAG, "Running");
                 break;
             case ProcessIntentService.STATUS_FINISHED:
-                String data = resultData.getString(WeatherConstants.RESPONSE_TAG);
-                Weather mWeatherInfo = ParseFactory.parseWeatherData(data);
-                StringBuilder sBuilder = new StringBuilder();
-                sBuilder.append(mWeatherInfo.getCityName())
-                        .append(getResources().getString(R.string.comma))
-                        .append(mWeatherInfo.getmWeatherSystemData().getWeatherCountry());
+                try {
+                    String data = resultData.getString(WeatherConstants.RESPONSE_TAG);
+                    Weather mWeatherInfo = ParseFactory.parseWeatherData(data);
+                    if (mWeatherInfo.getErrorMessage() != null) {
+                        Toast.makeText(WeatherMainActivity.this, mWeatherInfo.getErrorMessage(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        StringBuilder sBuilder = new StringBuilder();
+                        sBuilder.append(mWeatherInfo.getCityName())
+                                .append(getResources().getString(R.string.comma))
+                                .append(mWeatherInfo.getmWeatherSystemData().getWeatherCountry());
 
                 Picasso.with(WeatherMainActivity.this)
                         .load(WeatherConstants.IMAGE_APPEND_URL + mWeatherInfo.getWeatherDescription().getIconId() + WeatherConstants.ICON_EXTENSION)
@@ -127,8 +130,13 @@ public class WeatherMainActivity extends BaseActivity implements TextView.OnEdit
                         + mWeatherInfo.getmWSMainDescription().getWeatherPressure() + getResources().getString(R.string.pressure_unit) + getResources().getString(R.string.double_next_line) + getResources().getString(R.string.geo_cords_start) + mWeatherInfo.getLatitude() + getResources().getString(R.string.comma) + mWeatherInfo.getLongitude() + getResources().getString(R.string.end_geo_cords));
                 showResponse.setText(sBuilder.toString().trim());
                 Log.d(TAG, "Response recieved :\n" + data);
-                loadingBar.setVisibility(View.GONE);
-
+                    }
+                    loadingBar.setVisibility(View.GONE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    loadingBar.setVisibility(View.GONE);
+                }
                 break;
             case ProcessIntentService.STATUS_ERROR:
                 loadingBar.setVisibility(View.GONE);

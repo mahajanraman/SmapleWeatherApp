@@ -10,9 +10,18 @@ public class Weather {
     private String cityName;
     private double windSpeed;
     private int cloudsRange;
+    private String errorMessage;
     private WSDescription weatherDescription;
     private WSMainDescription mWSMainDescription;
     private WeatherSystemData mWeatherSystemData;
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
     public int getCloudsRange() {
         return cloudsRange;
