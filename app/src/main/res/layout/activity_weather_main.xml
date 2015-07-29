@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="@dimen/text_margin_left"
             android:layout_marginLeft="@dimen/text_margin_left"
             android:layout_marginTop="@dimen/text_margin_left"
             android:layout_toLeftOf="@+id/search_weather_condition"
@@ -122,6 +122,6 @@
 
     <include
         android:id="@+id/loading_layout"
-        layout="@layout/custom_actionbar" />
+        layout="@layout/loading_layout" />
 
 </RelativeLayout>

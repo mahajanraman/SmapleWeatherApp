@@ -34,7 +34,7 @@ public class ParseFactory {
     private static final String CLOUDS = "clouds";
     private static final String ALL = "all";
     private static final String SPEED = "speed";
-	private static final Sttring ERROR_MESSAGE = "message";
+	private static final String ERROR_MESSAGE = "message";
 	private static final String DESCRIPTION  = "description";
 	private static final String ICON = "icon";
 	
